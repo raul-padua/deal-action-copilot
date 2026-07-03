@@ -98,8 +98,17 @@ vercel
 
 The repo follows the Next.js + FastAPI pattern: Vercel builds the Next.js app and deploys
 `api/index.py` as a Python serverless function (deps from `requirements.txt`). Set the
-same env vars in the Vercel project settings. Use Qdrant Cloud in production so the index
-survives cold starts.
+same env vars in the Vercel project settings.
+
+**Memory on Vercel (Hobby = 1024 MB max):** production uses a slim Python bundle — LangGraph
+and Qdrant are **not** installed on Vercel. Knowledge retrieval falls back to lightweight
+keyword search over the bundled markdown corpus (fine for this demo size). Local dev still
+uses LangGraph Studio (`graph_studio.py`) and optional Qdrant Cloud via `uv sync`.
+
+Optional env overrides:
+
+- `USE_KEYWORD_RAG=true` — force keyword search even locally (mirrors Vercel behavior)
+- Do **not** set `NEXT_PUBLIC_API_BASE` in production
 
 ## Notes / known limits
 

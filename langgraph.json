@@ -1,7 +1,7 @@
 {
   "dependencies": ["."],
-  "graphs": {
-    "copilot": "./api/_copilot/graph.py:GRAPH"
-  },
+    "graphs": {
+        "copilot": "./api/_copilot/graph_studio.py:GRAPH"
+    },
   "env": ".env"
 }

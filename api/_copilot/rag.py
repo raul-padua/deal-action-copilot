@@ -1,30 +1,36 @@
-"""Qdrant-backed retrieval over the approved Socure knowledge corpus.
+"""Knowledge retrieval — Qdrant + embeddings locally; lightweight keyword search on Vercel."""
 
-Uses Qdrant Cloud when QDRANT_URL is set; otherwise an in-memory index
-rebuilt on cold start (the corpus is tiny, so this stays cheap).
-"""
-
+import os
+import re
 import uuid
 
-from langchain_openai import OpenAIEmbeddings
-from qdrant_client import QdrantClient
-from qdrant_client.models import Distance, PointStruct, VectorParams
+from .config import COLLECTION_NAME, EMBEDDING_MODEL, IS_VERCEL, KNOWLEDGE_DIR, QDRANT_API_KEY, QDRANT_URL
 
-from .config import COLLECTION_NAME, EMBEDDING_MODEL, KNOWLEDGE_DIR, QDRANT_API_KEY, QDRANT_URL
-
-_client: QdrantClient | None = None
-_embeddings: OpenAIEmbeddings | None = None
+_client = None
+_embeddings = None
+_chunks_cache: list[dict] | None = None
 
 
-def _get_embeddings() -> OpenAIEmbeddings:
+def _use_keyword_rag() -> bool:
+    """Vercel hobby memory caps make in-memory Qdrant + batch embeddings too heavy."""
+    if os.getenv("USE_KEYWORD_RAG", "").lower() in ("1", "true", "yes"):
+        return True
+    return IS_VERCEL or not QDRANT_URL
+
+
+def _get_embeddings():
     global _embeddings
     if _embeddings is None:
+        from langchain_openai import OpenAIEmbeddings
+
         _embeddings = OpenAIEmbeddings(model=EMBEDDING_MODEL)
     return _embeddings
 
 
 def _load_chunks() -> list[dict]:
-    """Split each knowledge doc on `## ` headings; one chunk per section."""
+    global _chunks_cache
+    if _chunks_cache is not None:
+        return _chunks_cache
     chunks = []
     for path in sorted(KNOWLEDGE_DIR.glob("*.md")):
         doc_id = path.stem
@@ -40,14 +46,40 @@ def _load_chunks() -> list[dict]:
                     "text": body.strip(),
                 }
             )
+    _chunks_cache = chunks
     return chunks
 
 
-def _ensure_index(client: QdrantClient) -> None:
+def _keyword_search(query: str, k: int = 4) -> list[dict]:
+    terms = [t.lower() for t in re.findall(r"\w{3,}", query.lower())]
+    if not terms:
+        return []
+    scored: list[tuple[int, dict]] = []
+    for chunk in _load_chunks():
+        hay = f"{chunk['doc_title']} {chunk['text']}".lower()
+        score = sum(hay.count(t) for t in terms)
+        if score:
+            scored.append((score, chunk))
+    scored.sort(key=lambda x: -x[0])
+    return [
+        {**chunk, "score": float(score)}
+        for score, chunk in scored[:k]
+    ]
+
+
+def _qdrant_client():
+    from qdrant_client import QdrantClient
+
+    if QDRANT_URL:
+        return QdrantClient(url=QDRANT_URL, api_key=QDRANT_API_KEY)
+    return QdrantClient(":memory:")
+
+
+def _ensure_index(client) -> None:
+    from qdrant_client.models import Distance, PointStruct, VectorParams
+
     chunks = _load_chunks()
     if client.collection_exists(COLLECTION_NAME):
-        # Reindex when the corpus changed (chunk-count heuristic keeps cold starts
-        # cheap while picking up added/removed knowledge docs).
         if client.count(COLLECTION_NAME).count == len(chunks):
             return
         client.delete_collection(COLLECTION_NAME)
@@ -65,18 +97,18 @@ def _ensure_index(client: QdrantClient) -> None:
     )
 
 
-def get_client() -> QdrantClient:
+def get_client():
     global _client
     if _client is None:
-        if QDRANT_URL:
-            _client = QdrantClient(url=QDRANT_URL, api_key=QDRANT_API_KEY)
-        else:
-            _client = QdrantClient(":memory:")
+        _client = _qdrant_client()
         _ensure_index(_client)
     return _client
 
 
 def search_knowledge(query: str, k: int = 4) -> list[dict]:
+    if _use_keyword_rag():
+        return _keyword_search(query, k)
+
     client = get_client()
     vector = _get_embeddings().embed_query(query)
     hits = client.query_points(collection_name=COLLECTION_NAME, query=vector, limit=k).points
