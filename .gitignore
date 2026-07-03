@@ -1,0 +1,22 @@
+# env / secrets
+.env
+.env*.local
+
+# python
+__pycache__/
+*.pyc
+.venv/
+uv.lock
+
+# node / next
+node_modules/
+.next/
+out/
+next-env.d.ts
+
+# vercel
+.vercel
+
+# misc
+.DS_Store
+*.log
