@@ -51,6 +51,11 @@ class Stage2In(BaseModel):
     eligible_action_types: list[str]
 
 
+class Stage3In(BaseModel):
+    research_summary: str
+    research_notes: str = ""
+
+
 class ReviewIn(BaseModel):
     opportunity_id: str
     session_id: str | None = None
@@ -157,9 +162,11 @@ def research_stream(session_id: str):
 
 
 @app.post("/api/py/sessions/{session_id}/stage3/approve")
-def stage3_approve(session_id: str):
+def stage3_approve(session_id: str, body: Stage3In):
     try:
-        return approve_stage3(session_id)
+        return approve_stage3(
+            session_id, body.research_summary, body.research_notes
+        )
     except KeyError:
         raise HTTPException(status_code=404, detail="Session not found.")
     except ValueError as e:

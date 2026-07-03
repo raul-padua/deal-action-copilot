@@ -79,6 +79,7 @@ def _session_public(s: dict) -> dict:
             "feed": s.get("feed", []),
             "sources": s.get("known_source_ids", []),
             "research_summary": s.get("research_summary", ""),
+            "research_notes": s.get("research_notes", ""),
             "status": s.get("research_status", "pending"),
         }
         if s["current_stage"] >= 3
@@ -114,6 +115,7 @@ def start_session(opportunity_id: str) -> dict:
         "known_source_ids": ["CRM:opportunity"],
         "feed": [],
         "research_summary": "",
+        "research_notes": "",
         "research_status": "pending",
         "recommendation": None,
         "validation": None,
@@ -175,6 +177,8 @@ def _copilot_state(s: dict) -> dict:
         "policy": s["policy"],
         "messages": s.get("messages", []),
         "known_source_ids": s.get("known_source_ids", ["CRM:opportunity"]),
+        "research_summary": s.get("research_summary", ""),
+        "research_notes": s.get("research_notes", ""),
         "recommendation": s.get("recommendation"),
         "validation": s.get("validation"),
         "validation_feedback": s.get("validation_feedback"),
@@ -255,12 +259,19 @@ def stream_research(session_id: str) -> Iterator[dict]:
     }
 
 
-def approve_stage3(session_id: str) -> dict:
+def approve_stage3(
+    session_id: str,
+    research_summary: str,
+    research_notes: str = "",
+) -> dict:
     s = SESSIONS[session_id]
     if s["current_stage"] != 3:
         raise ValueError("Not on stage 3")
     if s["research_status"] != "done":
         raise ValueError("Research not complete")
+
+    s["research_summary"] = research_summary.strip()
+    s["research_notes"] = research_notes.strip()
 
     state = _copilot_state(s)
     out = generate_recommendation(state)

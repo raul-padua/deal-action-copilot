@@ -97,14 +97,25 @@ whole message.
   * End with "Best,\\n[Your name]"."""
 
 
+def _research_summary_text(state: dict) -> str:
+    if state.get("research_summary"):
+        text = str(state["research_summary"]).strip()
+    else:
+        summary_msgs = [
+            str(m.content)
+            for m in state.get("messages", [])
+            if isinstance(m, AIMessage) and not m.tool_calls and m.content
+        ]
+        text = " ".join(summary_msgs).strip() or "none"
+    notes = (state.get("research_notes") or "").strip()
+    if notes:
+        text += f"\n\nAnalyst research notes: {notes}"
+    return text
+
+
 def generate_recommendation(state: dict) -> dict:
     llm = _llm().with_structured_output(Recommendation)
     evidence_blobs = [str(m.content) for m in state["messages"] if isinstance(m, ToolMessage)]
-    summary_msgs = [
-        str(m.content)
-        for m in state["messages"]
-        if isinstance(m, AIMessage) and not m.tool_calls and m.content
-    ]
     policy = state["policy"]
     prompt = (
         f"Opportunity snapshot [CRM:opportunity]:\n{opportunity_summary_text(state['opportunity'])}\n\n"
@@ -115,7 +126,7 @@ def generate_recommendation(state: dict) -> dict:
         f"Policy constraints:\n" + ("\n".join(f"- {c}" for c in policy["constraints"]) or "- none") + "\n"
         f"Escalations:\n" + ("\n".join(f"- {e}" for e in policy["escalations"]) or "- none") + "\n\n"
         f"Retrieved evidence:\n" + ("\n\n".join(evidence_blobs) or "none") + "\n\n"
-        f"Research summary: {' '.join(summary_msgs) or 'none'}\n\n"
+        f"Research summary (human-approved): {_research_summary_text(state)}\n\n"
         f"Allowed source ids: {', '.join(state['known_source_ids'])}"
     )
     if state.get("validation_feedback"):

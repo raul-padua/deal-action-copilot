@@ -39,6 +39,7 @@ type Session = {
     feed: FeedItem[];
     sources: string[];
     research_summary: string;
+    research_notes: string;
     status: string;
   };
   stage4?: {
@@ -132,6 +133,7 @@ export default function Page() {
   // Stage 3
   const [feed, setFeed] = useState<FeedItem[]>([]);
   const [researchSummary, setResearchSummary] = useState("");
+  const [researchNotes, setResearchNotes] = useState("");
   const [researchDone, setResearchDone] = useState(false);
 
   // Stage 4
@@ -167,6 +169,12 @@ export default function Page() {
       setEscalationsText(listToText(s.stage2.escalations));
       setEligibleTypes(s.stage2.eligible_action_types);
     }
+    if (s.stage3) {
+      if (s.stage3.research_summary) setResearchSummary(s.stage3.research_summary);
+      if (s.stage3.research_notes) setResearchNotes(s.stage3.research_notes);
+      if (s.stage3.feed.length) setFeed(s.stage3.feed);
+      if (s.stage3.status === "done") setResearchDone(true);
+    }
     if (s.stage4?.recommendation) {
       setRec(s.stage4.recommendation);
       setValidation(s.stage4.validation);
@@ -180,6 +188,7 @@ export default function Page() {
     setSession(null);
     setFeed([]);
     setResearchSummary("");
+    setResearchNotes("");
     setResearchDone(false);
     setRec(null);
     setValidation(null);
@@ -293,6 +302,11 @@ export default function Page() {
     try {
       const res = await fetch(`${API}/api/py/sessions/${session.session_id}/stage3/approve`, {
         method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          research_summary: researchSummary,
+          research_notes: researchNotes,
+        }),
       });
       if (!res.ok) throw new Error(await res.text());
       applySession(await res.json());
@@ -491,9 +505,9 @@ export default function Page() {
             <div className="panel-h">Step 3 — Research the account</div>
             <div className="panel-b">
               <p className="stage-intro">
-                The copilot is looking up approved sales content and public news, using your
-                approved deal review and playbook rules. Review the research log, then approve
-                to draft the recommendation.
+                The copilot looked up approved sales content and public news using your
+                approved deal review and playbook rules. Edit the research summary or add
+                your own notes — your changes carry into the draft recommendation.
               </p>
               {feed.length === 0 && !researchDone && (
                 <div className="loading-pulse">Researching…</div>
@@ -511,18 +525,34 @@ export default function Page() {
                   </div>
                 )
               )}
-              {researchSummary && (
-                <>
-                  <div className="section-label">Research summary</div>
-                  <div className="summary-box">{researchSummary}</div>
-                </>
-              )}
               {researchDone && (
-                <div className="stage-actions">
-                  <button className="run-btn run-btn-inline" onClick={approveStage3} disabled={busy}>
-                    Approve research &amp; draft recommendation
-                  </button>
-                </div>
+                <>
+                  <div className="section-label">Research summary — edit freely</div>
+                  <textarea
+                    className="list-edit"
+                    value={researchSummary}
+                    onChange={(e) => setResearchSummary(e.target.value)}
+                    rows={5}
+                    placeholder="Summarize what the research found…"
+                  />
+                  <div className="section-label">Your research notes</div>
+                  <textarea
+                    className="list-edit"
+                    value={researchNotes}
+                    onChange={(e) => setResearchNotes(e.target.value)}
+                    rows={3}
+                    placeholder="Add context, corrections, or extra findings the copilot should weigh when drafting…"
+                  />
+                  <div className="stage-actions">
+                    <button
+                      className="run-btn run-btn-inline"
+                      onClick={approveStage3}
+                      disabled={busy || !researchSummary.trim()}
+                    >
+                      Approve research &amp; draft recommendation
+                    </button>
+                  </div>
+                </>
               )}
             </div>
           </div>

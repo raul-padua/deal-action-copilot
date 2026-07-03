@@ -62,7 +62,7 @@ forward into research and the final draft.
 |------|----------------|---------------|
 | 1 — Review the deal | CRM snapshot, signals, gaps | Yes — signals, gaps, analyst notes |
 | 2 — Playbook rules | Constraints and allowed action types | Yes — constraints, escalations, eligible types |
-| 3 — Research | Approved-knowledge RAG + Tavily web search | Review log, then approve |
+| 3 — Research | Approved-knowledge RAG + Tavily web search | Yes — research summary, analyst notes |
 | 4 — Draft | Structured recommendation + optional email | Yes — action, draft message; final approve/reject |
 
 > Dev note: `.env.development` sets `NEXT_PUBLIC_API_BASE=http://localhost:8000` so the
