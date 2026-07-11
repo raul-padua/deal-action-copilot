@@ -21,9 +21,10 @@ Next.js (Vercel)  ──SSE──  FastAPI (@vercel/python, api/index.py)
                               └─ Qdrant (Cloud if configured, else in-memory)
 ```
 
-- **Synthetic data:** `api/_copilot/data/opportunities.json` (mock CRM, 5 deals including
-  an evidence-poor one that triggers abstention) and `api/_copilot/data/knowledge/*.md`
-  (mock approved product docs, case studies, playbooks, messaging policy).
+- **Synthetic data:** `api/_copilot/data/opportunities.json` (mock CRM, 9 deals across
+  9 verticals, including an evidence-poor one that triggers abstention) and
+  `api/_copilot/data/knowledge/*.md` (mock approved product docs, case studies,
+  playbooks, messaging policy).
 - **Policy gates** (`api/_copilot/policies.py`) are plain Python, no LLM: eligibility rules
   before generation, guardrail validation after (citation integrity, action eligibility,
   quantified-claims check, confidence rules).
@@ -46,6 +47,24 @@ Next.js (Vercel)  ──SSE──  FastAPI (@vercel/python, api/index.py)
 uv sync          # python deps
 npm install      # frontend deps
 ```
+
+## Tests
+
+The policy gates are deterministic plain Python, so they are fully unit-tested — no LLM
+or network needed:
+
+```bash
+uv run pytest
+```
+
+- `tests/test_policies.py` — both governance gates: eligibility rules (evidence
+  richness, deployed-product, commercial-blocker, exec-escalation, contact-fatigue) and
+  validation guardrails (action eligibility, citation integrity, quantified-claims,
+  confidence rules).
+- `tests/test_synthetic_deals_eval.py` — offline eval running signal detection + the
+  eligibility gate over all 9 synthetic deals, asserting the governance behavior each
+  deal was designed to demonstrate (e.g., LoopRide's empty record blocks outreach,
+  Helios's pricing/legal items escalate).
 
 ## Run locally (two terminals)
 

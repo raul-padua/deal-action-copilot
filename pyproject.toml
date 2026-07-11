@@ -17,7 +17,12 @@ dependencies = [
 [dependency-groups]
 dev = [
     "langgraph-cli[inmem]>=0.4.12",
+    "pytest>=8.0.0",
 ]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
 
 [tool.uv]
 package = false
