@@ -1,6 +1,6 @@
 # Case Study (approved): Regional Bank — Digital Account Opening
 
-A US regional bank launching digital account opening deployed Sigma Synthetic Fraud and Socure Verify inside a RiskOS onboarding workflow.
+A US regional bank launching digital account opening deployed Atlas Synthetic Fraud and Northstar Verify inside a DecisionOS onboarding workflow.
 
 ## Approved results
 - Manual review reduced from 17% to 6% of applications.

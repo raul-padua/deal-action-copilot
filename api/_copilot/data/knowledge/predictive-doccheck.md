@@ -1,4 +1,4 @@
-# Predictive Document Verification (DocV)
+# Predictive Document Verification (DocCheck)
 
 Document-and-selfie verification with liveness, document forensics, injection-attack prevention, and deepfake defense. Used as a step-up when database verification is inconclusive, or as a primary check in regulated/high-risk flows.
 

@@ -35,7 +35,7 @@ class Evidence(BaseModel):
         description=(
             "Identifier of the source this claim rests on. Must be one of the "
             "source ids provided in context, e.g. 'CRM:opportunity', "
-            "'KB:sigma-synthetic-fraud', 'WEB:tavily-1'."
+            "'KB:atlas-synthetic-fraud', 'WEB:tavily-1'."
         )
     )
     claim: str = Field(description="The specific fact or signal taken from this source.")
@@ -50,8 +50,8 @@ class Recommendation(BaseModel):
     )
     timing: str = Field(description="When to act, e.g. 'within 3 business days'.")
     rationale: str = Field(description="Why this action, grounded in the evidence. 2-4 sentences.")
-    socure_angle: Optional[str] = Field(
-        default=None, description="Relevant Socure capability/positioning to lead with, if any."
+    product_angle: Optional[str] = Field(
+        default=None, description="Relevant Northstar capability/positioning to lead with, if any."
     )
     supporting_asset: Optional[str] = Field(
         default=None, description="Approved asset or proof point to use, if any (must come from retrieved knowledge)."

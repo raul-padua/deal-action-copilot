@@ -8,7 +8,7 @@ payout changes) to catch account sharing, account selling, and post-hire identit
 - Gig platforms detecting account sharing: verified workers handing accounts to
   unverified people after onboarding.
 - Compliance regimes requiring ongoing (not point-in-time) workforce assurance.
-- Existing Socure Verify customers: continuous screening is a natural expansion because
+- Existing Northstar Verify customers: continuous screening is a natural expansion because
   the identity baseline from onboarding is already established.
 
 ## Approved claims

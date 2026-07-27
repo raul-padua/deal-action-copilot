@@ -1,5 +1,5 @@
 :root {
-  /* Socure.com-inspired: deep navy, crisp white surfaces, blue→violet gradient CTAs */
+  /* Northstar demo theme: deep navy, crisp white surfaces, blue→violet gradient CTAs */
   --navy: #071428;
   --navy-mid: #0c1f3d;
   --navy-soft: #132a52;
@@ -45,7 +45,7 @@ body {
 
 .page { min-height: 100vh; display: flex; flex-direction: column; }
 
-/* ── Top nav (Socure-style sticky bar) ─────────────────────────────────── */
+/* ── Top nav (sticky bar) ─────────────────────────────────── */
 .topnav {
   position: sticky; top: 0; z-index: 50;
   display: flex; align-items: center; justify-content: space-between; gap: 16px;
@@ -68,7 +68,7 @@ body {
 .brand span { color: var(--accent-deep); }
 .nav-status { display: flex; gap: 6px; flex-wrap: wrap; justify-content: flex-end; }
 
-/* ── Hero band (dark navy, like socure.com homepage) ───────────────────── */
+/* ── Hero band (dark navy homepage band) ───────────────────── */
 .hero {
   background:
     radial-gradient(900px 400px at 80% -20%, rgba(123, 47, 255, 0.18), transparent),
@@ -233,7 +233,7 @@ body {
   background: var(--green-soft); color: var(--green); border: 1px solid rgba(18, 128, 92, 0.22);
 }
 
-/* Primary CTA — Socure pill gradient */
+/* Primary CTA — pill gradient */
 .run-btn {
   width: 100%; padding: 14px 20px; border-radius: 999px; border: none; cursor: pointer;
   background: var(--gradient); color: #ffffff;

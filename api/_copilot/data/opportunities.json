@@ -1,7 +1,7 @@
 [
   {
-    "id": "opp-meridian",
-    "account": "Meridian Digital Bank",
+    "id": "opp-acme",
+    "account": "Acme Digital Bank",
     "vertical": "financial_services",
     "motion": "new_logo",
     "stage": "technical_evaluation",
@@ -9,7 +9,7 @@
     "days_to_close": 21,
     "days_in_stage": 17,
     "days_since_last_activity": 6,
-    "products_evaluated": ["Sigma Synthetic Fraud", "Socure Verify"],
+    "products_evaluated": ["Atlas Synthetic Fraud", "Northstar Verify"],
     "products_deployed": [],
     "stakeholders": [
       { "name": "Dana Whitfield", "role": "Head of Fraud", "engagement": "high", "last_touch_days": 4 },
@@ -19,21 +19,21 @@
     "recent_engagement": [
       "Head of Fraud downloaded the synthetic-identity whitepaper (5 days ago)",
       "VP of Digital Banking attended the onboarding-conversion webinar (8 days ago)",
-      "Three visits to the Sigma Synthetic Fraud product page from Meridian IPs this week"
+      "Three visits to the Atlas Synthetic Fraud product page from Acme IPs this week"
     ],
     "call_notes": [
       "Security review completed and passed (call, 6 days ago).",
       "Manual-review volume in onboarding remains an unresolved concern; team is triaging ~18% of applications by hand.",
-      "Evaluating Alloy in parallel; decision criteria weighted toward fraud-capture rate and onboarding conversion."
+      "Evaluating a competing vendor in parallel; decision criteria weighted toward fraud-capture rate and onboarding conversion."
     ],
     "objections": ["Unclear how step-up flows affect application abandonment"],
-    "competitors": ["Alloy"],
+    "competitors": ["Competitor A"],
     "next_step_on_record": "None scheduled",
     "notes": "Launching a digital account-opening product in Q3."
   },
   {
-    "id": "opp-northwind",
-    "account": "Northwind Marketplace",
+    "id": "opp-contoso",
+    "account": "Contoso Marketplace",
     "vertical": "marketplaces",
     "motion": "expansion",
     "stage": "solution_evaluation",
@@ -41,28 +41,28 @@
     "days_to_close": 45,
     "days_in_stage": 12,
     "days_since_last_activity": 5,
-    "products_evaluated": ["Predictive DocV"],
-    "products_deployed": ["Sigma Identity Fraud", "Socure Verify"],
+    "products_evaluated": ["Predictive DocCheck"],
+    "products_deployed": ["Atlas Identity Fraud", "Northstar Verify"],
     "stakeholders": [
       { "name": "Elena Vasquez", "role": "Director of Trust & Safety", "engagement": "high", "last_touch_days": 5 },
       { "name": "Tom Okafor", "role": "VP Engineering", "engagement": "low", "last_touch_days": 30 }
     ],
     "recent_engagement": [
-      "Director of Trust & Safety viewed the Predictive DocV page four times this month",
+      "Director of Trust & Safety viewed the Predictive DocCheck page four times this month",
       "Support ticket asked whether document verification can gate high-risk seller onboarding"
     ],
     "call_notes": [
       "Seller-onboarding fraud ring detected last quarter; manual document checks added friction and seller signups dropped 11%.",
-      "Happy with deployed Sigma Identity Fraud performance; renewal secured last quarter."
+      "Happy with deployed Atlas Identity Fraud performance; renewal secured last quarter."
     ],
-    "objections": ["Concern about DocV latency in the seller signup flow"],
+    "objections": ["Concern about DocCheck latency in the seller signup flow"],
     "competitors": [],
     "next_step_on_record": "Technical deep-dive to be scheduled",
     "notes": "Existing customer since 2024; expansion into document verification for seller onboarding."
   },
   {
-    "id": "opp-apex",
-    "account": "Apex Digital Exchange",
+    "id": "opp-orion",
+    "account": "Orion Digital Exchange",
     "vertical": "crypto",
     "motion": "expansion",
     "stage": "business_validation",
@@ -70,8 +70,8 @@
     "days_to_close": 30,
     "days_in_stage": 10,
     "days_since_last_activity": 4,
-    "products_evaluated": ["Device Risk", "Sigma Identity Fraud"],
-    "products_deployed": ["Socure Verify", "Global Watchlist Screening"],
+    "products_evaluated": ["Device Risk", "Atlas Identity Fraud"],
+    "products_deployed": ["Northstar Verify", "Global Watchlist Screening"],
     "stakeholders": [
       { "name": "Nadia Osei", "role": "CISO", "engagement": "high", "last_touch_days": 4 },
       { "name": "Victor Huang", "role": "Head of Risk Operations", "engagement": "medium", "last_touch_days": 7 },
@@ -92,8 +92,8 @@
     "notes": "KYC customer since 2023; expansion into device intelligence and login risk after the ATO spike."
   },
   {
-    "id": "opp-gigbridge",
-    "account": "GigBridge",
+    "id": "opp-flexcrew",
+    "account": "FlexCrew",
     "vertical": "workforce",
     "motion": "expansion",
     "stage": "discovery",
@@ -102,18 +102,18 @@
     "days_in_stage": 6,
     "days_since_last_activity": 2,
     "products_evaluated": [],
-    "products_deployed": ["Socure Verify"],
+    "products_deployed": ["Northstar Verify"],
     "stakeholders": [
       { "name": "Rosa Delgado", "role": "VP Operations", "engagement": "high", "last_touch_days": 2 },
       { "name": "Ben Carter", "role": "Compliance Manager", "engagement": "medium", "last_touch_days": 10 }
     ],
     "recent_engagement": [
-      "VP Operations asked on the last call whether Socure covers ongoing worker screening",
+      "VP Operations asked on the last call whether Northstar covers ongoing worker screening",
       "Compliance Manager viewed the workforce-verification solution page (3 days ago)"
     ],
     "call_notes": [
       "Detecting account sharing among delivery drivers: verified workers handing accounts to unverified people.",
-      "Current Socure Verify deployment covers onboarding KYC only; nothing re-checks workers after day one.",
+      "Current Northstar Verify deployment covers onboarding KYC only; nothing re-checks workers after day one.",
       "No budget line yet; VP Operations exploring the problem space before proposing internally."
     ],
     "objections": [],
@@ -122,8 +122,8 @@
     "notes": "Existing customer; early-stage expansion conversation into continuous workforce screening."
   },
   {
-    "id": "opp-playpeak",
-    "account": "PlayPeak Interactive",
+    "id": "opp-arcadepeak",
+    "account": "ArcadePeak Interactive",
     "vertical": "gaming",
     "motion": "new_logo",
     "stage": "discovery",
@@ -131,7 +131,7 @@
     "days_to_close": 60,
     "days_in_stage": 8,
     "days_since_last_activity": 3,
-    "products_evaluated": ["Socure Verify", "Predictive DocV"],
+    "products_evaluated": ["Northstar Verify", "Predictive DocCheck"],
     "products_deployed": [],
     "stakeholders": [
       { "name": "Jordan Lee", "role": "Head of Compliance", "engagement": "medium", "last_touch_days": 3 }
@@ -144,13 +144,13 @@
       "No economic buyer identified yet; budget owner unclear."
     ],
     "objections": [],
-    "competitors": ["Jumio"],
+    "competitors": ["Competitor B"],
     "next_step_on_record": "Follow-up discovery call to be scheduled",
     "notes": "Stakeholder coverage is thin: only one contact engaged."
   },
   {
-    "id": "opp-granite",
-    "account": "Granite State Benefits Agency",
+    "id": "opp-summit",
+    "account": "Summit State Benefits Agency",
     "vertical": "public_sector",
     "motion": "new_logo",
     "stage": "solution_evaluation",
@@ -158,7 +158,7 @@
     "days_to_close": 120,
     "days_in_stage": 40,
     "days_since_last_activity": 12,
-    "products_evaluated": ["Socure Verify", "Predictive DocV"],
+    "products_evaluated": ["Northstar Verify", "Predictive DocCheck"],
     "products_deployed": [],
     "stakeholders": [
       { "name": "Alice Munro", "role": "Program Integrity Director", "engagement": "medium", "last_touch_days": 12 },
@@ -173,13 +173,13 @@
       "Agency wants a pilot phase before full rollout; state security assessment scheduled next month."
     ],
     "objections": ["Accessibility for citizens without smartphones or driver's licenses"],
-    "competitors": ["ID.me"],
+    "competitors": ["Competitor C"],
     "next_step_on_record": "Pilot scope document requested",
     "notes": "Long public-sector cycle; pilot-first procurement path."
   },
   {
-    "id": "opp-brightpath",
-    "account": "BrightPath Health",
+    "id": "opp-clearpath",
+    "account": "ClearPath Health",
     "vertical": "healthcare",
     "motion": "new_logo",
     "stage": "solution_evaluation",
@@ -187,7 +187,7 @@
     "days_to_close": 50,
     "days_in_stage": 27,
     "days_since_last_activity": 20,
-    "products_evaluated": ["Socure Verify", "Predictive DocV"],
+    "products_evaluated": ["Northstar Verify", "Predictive DocCheck"],
     "products_deployed": [],
     "stakeholders": [
       { "name": "Dr. Maya Patel", "role": "VP Clinical Operations", "engagement": "medium", "last_touch_days": 20 },
@@ -205,8 +205,8 @@
     "notes": "Deal has gone quiet for 20 days after a positive evaluation; legal items appear to be the blocker."
   },
   {
-    "id": "opp-helios",
-    "account": "Helios Telecom",
+    "id": "opp-novalink",
+    "account": "NovaLink Telecom",
     "vertical": "telecom",
     "motion": "new_logo",
     "stage": "procurement",
@@ -214,7 +214,7 @@
     "days_to_close": 14,
     "days_in_stage": 24,
     "days_since_last_activity": 15,
-    "products_evaluated": ["Sigma Identity Fraud", "Device Risk"],
+    "products_evaluated": ["Atlas Identity Fraud", "Device Risk"],
     "products_deployed": [],
     "stakeholders": [
       { "name": "Sofia Brandt", "role": "VP Risk & Fraud", "engagement": "medium", "last_touch_days": 15 },
@@ -232,8 +232,8 @@
     "notes": "Deal stalled in procurement; pricing and legal items are the blockers."
   },
   {
-    "id": "opp-loopride",
-    "account": "LoopRide",
+    "id": "opp-zipride",
+    "account": "ZipRide",
     "vertical": "ride_sharing",
     "motion": "new_logo",
     "stage": "discovery",

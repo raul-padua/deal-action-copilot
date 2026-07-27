@@ -1,4 +1,4 @@
-# Sigma Identity Fraud
+# Atlas Identity Fraud
 
 Flagship third-party fraud model: scores the risk that an applicant is not who they claim to be. Multi-signal — email, phone, address, IP, device, velocity, identity graph — producing a real-time decision score for onboarding and high-risk moments.
 
@@ -12,4 +12,4 @@ Flagship third-party fraud model: scores the risk that an applicant is not who t
 - Tunable thresholds let risk teams trade off auto-approval rate against fraud capture per policy.
 
 ## Proof points (approved)
-- Marketplace case study: Northwind-class marketplaces cut fake-account creation while lifting auto-approval. See case-study-marketplace.
+- Marketplace case study: Contoso-class marketplaces cut fake-account creation while lifting auto-approval. See case-study-marketplace.

@@ -31,7 +31,7 @@ RESEARCH_SYSTEM = """You are the research step of the Deal Action Copilot, a pol
 GTM assistant. Your only job is to gather evidence before a recommendation is generated.
 
 Use the tools to:
-1. retrieve_socure_knowledge — find the approved Socure products, case studies, playbooks, \
+1. retrieve_approved_knowledge — find the approved Northstar products, case studies, playbooks, \
 and messaging policy relevant to this deal's problems and vertical.
 2. research_account — one web search for recent public news about the account, if the \
 account looks substantial enough to have public news.
@@ -163,7 +163,7 @@ def fallback_abstain(state: dict) -> dict:
             "Generated recommendations failed policy validation twice. Per governance "
             "rules the system abstains rather than shipping an unsupported action."
         ),
-        socure_angle=None,
+        product_angle=None,
         supporting_asset=None,
         evidence=[Evidence(source_id="CRM:opportunity", claim="Opportunity record lacks sufficient verified context.")],
         confidence=Confidence.low,

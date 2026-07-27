@@ -1,10 +1,10 @@
-# Socure Verify (KYC/CIP)
+# Northstar Verify (KYC/CIP)
 
 Identity verification for KYC/CIP compliance: name, DOB, address, SSN validation against authoritative online and offline data, with watchlist screening available in the same flow.
 
 ## When to lead with it
 - Regulated onboarding requiring CIP (banks, fintech, gaming, telecom).
-- Age verification requirements in gaming and age-restricted products (pairs with DocV for step-up).
+- Age verification requirements in gaming and age-restricted products (pairs with DocCheck for step-up).
 - Reducing onboarding abandonment caused by manual KYC exceptions.
 
 ## Approved claims

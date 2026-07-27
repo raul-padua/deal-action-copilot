@@ -16,7 +16,7 @@ IS_VERCEL = bool(os.getenv("VERCEL"))
 
 DATA_DIR = Path(__file__).resolve().parent / "data"
 KNOWLEDGE_DIR = DATA_DIR / "knowledge"
-COLLECTION_NAME = "socure_knowledge"
+COLLECTION_NAME = "approved_knowledge"
 
 # Bound on the research loop: max LLM turns before forced generation.
 MAX_RESEARCH_TURNS = 3

@@ -1,4 +1,4 @@
-# Sigma Synthetic Fraud
+# Atlas Synthetic Fraud
 
 Detects synthetic identities — fabricated or manipulated identities assembled from real and fake attributes — at account opening and across the account lifecycle. Combines PII risk signals, identity-graph relationships, velocity, and history of element combinations.
 

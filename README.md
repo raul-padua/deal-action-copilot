@@ -7,7 +7,9 @@ knowledge** (Qdrant RAG), enriches with **live web research** (Tavily), and prod
 reviews with approve / edit / reject + reason codes. Abstention ("gather information",
 "no action yet") is a first-class output.
 
-Companion MVP to the *Deal Action Copilot — MVP Outline* one-pager.
+Companion portfolio demo: a vendor-agnostic GTM marketing-agent workflow for a
+fictional identity-assurance vendor (**Northstar**) and synthetic accounts
+(Acme Digital Bank, Contoso Marketplace, ZipRide, and others).
 
 ## Architecture
 
@@ -63,8 +65,8 @@ uv run pytest
   confidence rules).
 - `tests/test_synthetic_deals_eval.py` — offline eval running signal detection + the
   eligibility gate over all 9 synthetic deals, asserting the governance behavior each
-  deal was designed to demonstrate (e.g., LoopRide's empty record blocks outreach,
-  Helios's pricing/legal items escalate).
+  deal was designed to demonstrate (e.g., ZipRide's empty record blocks outreach,
+  NovaLink's pricing/legal items escalate).
 
 ## Run locally (two terminals)
 
@@ -99,15 +101,15 @@ uv run langgraph dev   # opens Studio against the local graph on :2024
 ```
 
 Suggested demo path (9 synthetic deals across 9 verticals, 3 of them expansions):
-- **Meridian Digital Bank** (new logo, technical evaluation) — rich evidence → coordinated
+- **Acme Digital Bank** (new logo, technical evaluation) — rich evidence → coordinated
   action with cited case study.
-- **Apex Digital Exchange** (expansion, business validation) — deployed KYC customer with an
+- **Orion Digital Exchange** (expansion, business validation) — deployed KYC customer with an
   ATO spike → device-intelligence expansion; exec alignment allowed at this stage.
-- **GigBridge** (expansion, discovery) — no budget owner yet → problem-sizing motion, not a pitch.
-- **BrightPath Health** (stalled, 20 days quiet) — legal blocker → diagnose inactivity, escalate
+- **FlexCrew** (expansion, discovery) — no budget owner yet → problem-sizing motion, not a pitch.
+- **ClearPath Health** (stalled, 20 days quiet) — legal blocker → diagnose inactivity, escalate
   BAA internally, no drafted terms.
-- **Helios Telecom** (procurement) — pricing/legal blockers → internal escalation, no drafted terms.
-- **LoopRide** — empty record → the eligibility gate blocks outreach and the copilot abstains.
+- **NovaLink Telecom** (procurement) — pricing/legal blockers → internal escalation, no drafted terms.
+- **ZipRide** — empty record → the eligibility gate blocks outreach and the copilot abstains.
 
 ## Deploy to Vercel
 

@@ -61,7 +61,7 @@ type Recommendation = {
   target_stakeholder?: string | null;
   timing: string;
   rationale: string;
-  socure_angle?: string | null;
+  product_angle?: string | null;
   supporting_asset?: string | null;
   evidence: Evidence[];
   confidence: string;
@@ -572,7 +572,7 @@ export default function Page() {
                 <dt>Owner</dt><dd>{rec.owner}</dd>
                 {rec.target_stakeholder && (<><dt>Target stakeholder</dt><dd>{rec.target_stakeholder}</dd></>)}
                 <dt>Timing</dt><dd>{rec.timing}</dd>
-                {rec.socure_angle && (<><dt>Product angle</dt><dd>{rec.socure_angle}</dd></>)}
+                {rec.product_angle && (<><dt>Product angle</dt><dd>{rec.product_angle}</dd></>)}
                 {rec.supporting_asset && (<><dt>Supporting asset</dt><dd>{rec.supporting_asset}</dd></>)}
               </dl>
               <div className="section-label">Rationale</div>
@@ -664,8 +664,7 @@ export default function Page() {
         )}
 
         <footer className="site-footer">
-          <span>Demo with synthetic CRM data. Nothing reaches a customer without human approval.</span>
-          <a href="https://www.socure.com/" target="_blank" rel="noreferrer">Inspired by Socure ↗</a>
+          <span>Demo with synthetic CRM data for a fictional vendor (Northstar). Nothing reaches a customer without human approval.</span>
         </footer>
       </main>
     </div>

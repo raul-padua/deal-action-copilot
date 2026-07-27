@@ -12,7 +12,7 @@ moment across the account lifecycle.
 
 ## Approved claims
 - Detects risky devices and automation patterns before credentials are even submitted.
-- Signals feed the same RiskOS decisioning as identity and document checks, so login risk,
+- Signals feed the same DecisionOS decisioning as identity and document checks, so login risk,
   onboarding risk, and compliance run through one workflow.
 
 ## Proof points (approved)

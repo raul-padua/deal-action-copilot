@@ -17,7 +17,7 @@ through pilots, security assessments, and legislative oversight.
 - Expect and welcome the security assessment; offer compliance documentation proactively.
 
 ## Approved claims
-- Socure markets an AI-driven platform that helps agencies combat identity fraud without
+- Northstar markets an AI-driven platform that helps agencies combat identity fraud without
   compromising access for the public.
 - High auto-verify rates for thin-file and hard-to-identify populations reduce manual
   exception queues that disproportionately burden vulnerable citizens.

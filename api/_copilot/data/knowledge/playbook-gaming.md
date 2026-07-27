@@ -5,7 +5,7 @@ Real-money gaming operators must satisfy state-by-state regulator requirements f
 
 ## Recommended motion
 - Discovery: qualify which states, launch timeline, and current verification stack. Identify the economic buyer early — compliance rarely owns budget.
-- Lead product: Socure Verify (KYC + age) with Predictive DocV as regulator-accepted step-up.
+- Lead product: Northstar Verify (KYC + age) with Predictive DocCheck as regulator-accepted step-up.
 - Proof: emphasize auto-verify rates for young/thin-file users — the core gaming demographic that legacy checks fail.
 
 ## Policy notes

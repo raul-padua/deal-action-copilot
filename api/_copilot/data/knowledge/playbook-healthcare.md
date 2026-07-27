@@ -10,7 +10,7 @@ terms, HIPAA posture) and often becomes the hidden blocker after a positive eval
 - Frame identity proofing as prescriber protection and board compliance, not fraud tooling.
 - Engage legal early: surface the BAA and data-processing review as an explicit workstream
   with an owner and a date, rather than letting it stall silently after the technical win.
-- Verification flow: database verification first for low-friction patient intake, DocV
+- Verification flow: database verification first for low-friction patient intake, DocCheck
   step-up where state rules require documentary evidence.
 
 ## Approved claims

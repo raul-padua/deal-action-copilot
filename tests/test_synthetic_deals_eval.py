@@ -40,31 +40,31 @@ def test_every_deal_produces_a_valid_policy(opp_id):
     assert "no_action_yet" in policy["eligible_action_types"]
 
 
-def test_meridian_rich_evidence_allows_outreach():
-    """Meridian Digital Bank: rich evidence -> customer-facing action allowed."""
-    _, signals, policy = run_gate("opp-meridian")
+def test_acme_rich_evidence_allows_outreach():
+    """Acme Digital Bank: rich evidence -> customer-facing action allowed."""
+    _, signals, policy = run_gate("opp-acme")
     assert signals["evidence_richness"] >= MIN_RICHNESS_FOR_OUTREACH
     assert outreach_eligible(policy)
 
 
-def test_loopride_empty_record_blocks_outreach():
-    """LoopRide: near-empty CRM record -> outreach ineligible, abstention forced."""
-    _, signals, policy = run_gate("opp-loopride")
+def test_zipride_empty_record_blocks_outreach():
+    """ZipRide: near-empty CRM record -> outreach ineligible, abstention forced."""
+    _, signals, policy = run_gate("opp-zipride")
     assert signals["evidence_richness"] < MIN_RICHNESS_FOR_OUTREACH
     assert not outreach_eligible(policy)
     assert signals["gaps"], "an empty record should surface explicit gaps"
 
 
-def test_helios_procurement_blockers_escalate():
-    """Helios Telecom: pricing/legal items -> escalation, no drafted commercial terms."""
-    _, _, policy = run_gate("opp-helios")
+def test_novalink_procurement_blockers_escalate():
+    """NovaLink Telecom: pricing/legal items -> escalation, no drafted commercial terms."""
+    _, _, policy = run_gate("opp-novalink")
     assert policy["escalations"]
     assert any("out of bounds" in c for c in policy["constraints"])
 
 
-def test_brightpath_stalled_deal_is_flagged():
-    """BrightPath Health: ~20 days quiet -> inactivity signal detected."""
-    _, signals, _ = run_gate("opp-brightpath")
+def test_clearpath_stalled_deal_is_flagged():
+    """ClearPath Health: ~20 days quiet -> inactivity signal detected."""
+    _, signals, _ = run_gate("opp-clearpath")
     assert any("Inactive" in s for s in signals["signals"])
 
 

@@ -56,7 +56,7 @@ def make_rec(**overrides) -> Recommendation:
     return Recommendation(**fields)
 
 
-ALLOWED_SOURCES = {"CRM:opportunity", "KB:sigma-synthetic-fraud"}
+ALLOWED_SOURCES = {"CRM:opportunity", "KB:atlas-synthetic-fraud"}
 
 
 # ---------------------------------------------------------------------------
@@ -89,12 +89,12 @@ class TestEligibilityGate:
         assert ActionType.customer_outreach.value in policy["eligible_action_types"]
 
     def test_deployed_products_constrained_outside_expansion(self):
-        opp = make_opp(products_deployed=["Socure Verify"], motion="new_logo")
+        opp = make_opp(products_deployed=["Northstar Verify"], motion="new_logo")
         policy = eligibility_gate(opp, make_signals())
-        assert any("Socure Verify" in c for c in policy["constraints"])
+        assert any("Northstar Verify" in c for c in policy["constraints"])
 
     def test_deployed_products_unconstrained_in_expansion(self):
-        opp = make_opp(products_deployed=["Socure Verify"], motion="expansion")
+        opp = make_opp(products_deployed=["Northstar Verify"], motion="expansion")
         policy = eligibility_gate(opp, make_signals())
         assert not any("already-deployed" in c for c in policy["constraints"])
 
@@ -180,7 +180,7 @@ class TestValidationGate:
     def test_quantified_claim_with_kb_citation_passes_with_warning(self):
         rec = make_rec(
             evidence=[
-                Evidence(source_id="KB:sigma-synthetic-fraud", claim="40% manual-review reduction in case study.")
+                Evidence(source_id="KB:atlas-synthetic-fraud", claim="40% manual-review reduction in case study.")
             ],
             draft_message="Hi Dana,\n\nA peer bank cut manual reviews by 40%.\n\nBest,\n[Your name]",
         )

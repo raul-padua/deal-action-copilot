@@ -7,8 +7,8 @@ from .rag import search_knowledge
 
 
 @tool
-def retrieve_socure_knowledge(query: str) -> str:
-    """Search the approved Socure knowledge base (products, case studies, playbooks,
+def retrieve_approved_knowledge(query: str) -> str:
+    """Search the approved Northstar knowledge base (products, case studies, playbooks,
     messaging policy). Returns sections with their KB source ids. Only content
     returned here may be cited as a KB source or used for quantified claims."""
     results = search_knowledge(query)
@@ -42,4 +42,4 @@ def research_account(query: str) -> str:
     )
 
 
-TOOL_BELT = [retrieve_socure_knowledge, research_account]
+TOOL_BELT = [retrieve_approved_knowledge, research_account]
